@@ -1,0 +1,144 @@
+@use 'sass:color';
+
+:root {
+  --error-text-color: red;
+  --error-font-family: "JetBrains Mono", monospace;
+  --form-outline: thick solid transparent;
+  --button-outline: thick solid teal;
+  --button-focus-outline: thick solid blue;
+  --button-hover-outline: thick solid yellow;
+  --input-wrapper-outline: none;
+  --body-background-color: transparent;
+  --html-background-color_alt: #004646;
+  --html-background-color: teal;
+  --page-background-color: rgb(0, 70, 70);
+  --page-background-color: rgba(0, 70, 70, .3);
+  --page-background-color--simple: rgb(0, 120, 120);
+  --page-background-color--dark: rgb(0, 60, 60);
+  --page-background-color--dark-border: #0b515f;
+  --input-background-color: rgba(225, 216, 209);
+  --page-text-color--main: wheat;
+  --page-text-color--black: #000  ;
+  --page-text-color--dark: #004646;
+  --page-text-color--visible: white;
+  --page-accent-color--base: #ac5050;
+  --page-accent-color--main: yellow;
+  --page-accent-color--boon: teal;
+  --page-accent-color--bane: #92963f;
+  --page-accent-color--pastel-light: #c0bdbd;
+  --page-accent-color--mainText-alpha85: rgba(245, 222, 179, .85);
+  --page-header-color--main: yellow;
+  --page-accent-color--dark: #ac5050;
+  --page-accent-color--festive: #f0e4c6;
+  --page-text-color--accent_complement--festive: #2e2e2e;
+
+  --navlink-color-fg: wheat;
+  --navlink-color-bg: transparent;
+  --navlink-color-fg--active: yellow;
+  --navlink-color-bg--active: black;
+
+  --subtitle-color: white;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Consolas, "Courier New", monospace;
+}
+
+html {
+  background: var(--html-background-color);
+}
+
+body {
+  background: var(--body-background-color);
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+main > article {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+a {
+  color: white;
+  font-size: 1.2rem;
+}
+
+iframe {
+  border: none;
+  &.loading {
+    background: rgba(0, 0, 0, .1);
+    &:after {
+      content: "Loading...";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 2rem;
+    }
+  }
+}
+
+figure {
+  position: relative;
+  max-width: 90vw;
+  overflow: hidden;
+  margin: 0;
+}
+
+.ui--video__stage {
+  --video-height: 300px;
+  --video-width: 300;
+  position: relative;
+  height: var(--video-height);
+  width: calc(min(var(--video-width), 70vw));
+  display: inline-block;
+}
+
+hr {
+  width: 100%;
+  border: none;
+  border-top: thin solid var(--page-accent-color--main);
+}
+
+
+
+main {
+  background-color: var(--page-background-color--simple);
+}
+
+.classic-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+}
+
+main {
+  & section, & section > section {
+    background: var(--page-background-color);
+    margin: 1rem;
+    padding: 1rem;
+  }
+}

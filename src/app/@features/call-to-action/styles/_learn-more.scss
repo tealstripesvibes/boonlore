@@ -1,0 +1,29 @@
+#learn-more {
+  text-align: center;
+
+  display: flex;
+  margin: 2rem auto;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
+
+  a {
+    border-radius: 5px;
+    padding: 10px;
+    background: var(--page-accent-color--dark);
+    border: thin solid var(--page-accent-color--main);
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  button {
+    color: blue;
+    padding: 1rem;
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
+  }
+  &, button {
+    font-size: 2rem;
+  }
+}

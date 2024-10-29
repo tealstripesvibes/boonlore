@@ -1,0 +1,27 @@
+.main-logo {
+  display: flex;
+  flex-direction: row;
+
+  opacity: .3;
+  transition: opacity .3s ease-in-out;
+  &.engaged {
+    opacity: 1;
+  }
+
+  .feature[data-feature-name=app--site_button] {
+    > button {
+      background: transparent;
+      border: none;
+      height: 70px;
+      width: 70px;
+      figure {
+        margin: 0;
+      }
+      figcaption {
+        display: none;
+      }
+    }
+  }
+  .feature[data-feature-name=app--site_switcher] {
+  }
+}

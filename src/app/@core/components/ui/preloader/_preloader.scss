@@ -1,0 +1,32 @@
+// Preloader.scss
+
+.preloader-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  position: fixed;
+  opacity: .1;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 10;
+  color: white;
+  font-size: 1.5rem;
+
+  &.preload {
+    background-color: #1890ff;
+  }
+
+  &.loading {
+    background-color: #1890ff;
+  }
+
+  &.minorError {
+    background-color: #ffec3d;
+  }
+
+  &.fatalError {
+    background-color: #ff4d4f;
+  }
+}

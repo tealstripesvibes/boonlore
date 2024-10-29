@@ -1,0 +1,32 @@
+.feature {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+}
+
+@import "user/login-requirement";
+@import "user/logout-button";
+@import "concept/concept";
+@import "event/event";
+@import "scene/scene";
+
+.feature[data-feature-name=app--site_switcher] {
+  select {
+    font-size: 1.5rem;
+  }
+}
+
+
+
+.feature[data-feature-name=app--aggregate_features] {
+  position: absolute;
+  top: 0;
+  right: 1rem;
+}
+
+.feature[data-feature-name=app--state] {
+  position: absolute;
+  top: 0;
+  left: 1rem;
+}

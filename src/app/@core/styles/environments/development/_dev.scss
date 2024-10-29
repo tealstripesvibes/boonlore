@@ -1,0 +1,78 @@
+.dev-log--container {
+  display: none !important;
+}
+
+.dev-log--container {
+  height: 1rem;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  &.active {
+    .activate {
+      display: none;
+    }
+  }
+
+  &.inactive {
+    .deactivate {
+      display: none;
+    }
+    > *:not(.dev-log--controls) {
+      display: none;
+    }
+  }
+
+  > * {
+    outline: thin solid mediumaquamarine;
+  }
+}
+
+.dev-log--wrapper {
+  --dev-border-color: beige;
+
+  resize: both;
+  overflow: hidden;
+  display: flex;
+  position: absolute;
+  top: 1rem;
+  padding: 2rem 1rem 1rem;
+  max-width: 500px;
+
+  details {
+    z-index: 10;
+    background-color: #fafafa;
+  }
+}
+
+.dev-log--controls {
+  z-index: 1;
+  white-space: nowrap;
+}
+
+.dev-log {
+  outline: thin solid var(--dev-border-color);
+  width: 100%;
+  font-size: 0.75rem;
+  summary {
+    outline: thin solid #ccc;
+    opacity: 0.5;
+    padding: 0.75rem;
+    font-family: "JetBrains Mono", monospace;
+    cursor: pointer;
+    display: inline-block;
+    transition: background-color 0.3s;
+    &:hover {
+      background: lightblue;
+    }
+  }
+
+  pre {
+    font-family: "JetBrains Mono", monospace;
+  }
+}
+
+.user-logged-in {
+  outline: thick solid magenta;
+}

@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext",
+      "WebWorker"
+    ],
+    "types": [
+      "vite/client",
+      "vite-plugin-svgr/client",
+      "mdx"
+    ],
+    "allowJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@identities/*": ["./src/app/@identities/*"],
+      "@core/*": [ "./src/app/@core/*" ],
+      "@features/*": [ "./src/app/@features/*" ],
+      "@services/*": [ "./src/app/@services/*" ],
+      "@widgets/*": [ "./src/app/@widgets/*" ],
+    }
+  },
+  "include": [
+    "src",
+    "pages",
+    "./custom.d.ts"
+  ]
+}

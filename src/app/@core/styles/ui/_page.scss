@@ -1,0 +1,30 @@
+#page-content {
+  transition: opacity 0.3s;
+  color: var(--page-text-color--main);
+  background: var(--page-background-color);
+  padding: 0 20px;
+  max-width: 90vw;
+  min-height: 100vh;
+  main > section, main > article {
+    text-align: center;
+  }
+}
+
+.page-transitioning {
+  &:has(#main-nav) {
+    .stage-open {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      width: 100px;
+      height: 100px;
+      background-color: hotpink;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+  }
+}

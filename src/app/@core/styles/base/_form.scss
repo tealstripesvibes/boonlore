@@ -1,0 +1,50 @@
+form {
+  --input-border-color: grey;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  &:empty {
+    display: none;
+  }
+  input,
+  button,
+  select,
+  textarea {
+    border: thin solid var(--input-border-color);
+  }
+  input {
+    border-radius: 0;
+  }
+}
+
+.button-container {
+  padding: 0 2ch;
+}
+
+button,
+.button {
+  &:focus {
+    font-weight: bold;
+    z-index: 10;
+  }
+  &:hover,
+  &:active {
+    cursor: pointer;
+  }
+}
+
+.form-wrapper {
+  outline: var(--form-outline);
+  margin: 2ch;
+  padding: 2ch;
+  > header {
+    font-size: 20px;
+  }
+  > form {
+    padding: 0;
+    margin: 0;
+    &:empty {
+      display: none;
+    }
+  }
+}

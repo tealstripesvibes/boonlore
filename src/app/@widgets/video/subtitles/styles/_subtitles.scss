@@ -1,0 +1,60 @@
+#subtitles {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+
+  button {
+    border: none;
+    font-size: 2rem;
+    padding: 1rem 2rem;
+    margin: 0 auto;
+    cursor: pointer;
+    &.playpause {
+      display: none;
+    }
+  }
+  blockquote {
+    box-shadow: -1rem 0px 0px 0px white;
+    padding: 0 0 0 10px;
+    font-size: 3rem;
+    font-style: italic;
+    color: var(--subtitle-color);
+    line-height: 1.5;
+    text-align: center;
+    margin: 20px 0 0;
+    display: inline-flex;
+    flex-flow: column nowrap;
+    width: 13ch;
+    &.active-phrase {
+      button {
+        font-size: .9rem;
+      }
+      span {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  section {
+    width: 100%;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    p {
+      text-align: center;
+      max-width: 25ch;
+    }
+
+    header {
+      text-align: left;
+      font-size: 1.5rem;
+      width: 100%;
+      color: var(--page-text-color--main);
+      font-weight: bold;
+      background: var(--page-accent-color--dark);
+      padding: 1rem;
+    }
+  }
+}

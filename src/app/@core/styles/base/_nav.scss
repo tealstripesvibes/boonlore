@@ -1,0 +1,14 @@
+nav {
+  margin: 0.5rem 0;
+  display: block;
+  ul {
+    display: flex;
+    flex-flow: row wrap;
+    padding: 1rem;
+    justify-content: center;
+    li {
+      padding: 1rem;
+      list-style: none;
+    }
+  }
+}

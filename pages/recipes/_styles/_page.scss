@@ -1,0 +1,102 @@
+#page__recipes {
+  .recipe {
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+
+    @media screen and (max-width: 760px) {
+      flex-direction: column;
+    }
+
+    .ingredients, .preparation-steps {
+      padding: 1rem;
+      margin: .5rem;
+      outline: thin solid var(--html-background-color);
+      transition: background-color .3s;
+
+      &:hover {
+        background-color: rgba(200, 200, 200, .1)
+      }
+    }
+
+    .preparation-steps {
+      .primed {
+        background-color: var(--page-text-color--main);
+        color: var(--page-accent-color--dark);
+        font-weight: bold;
+        outline: thick solid var(--page-accent-color--dark);
+        button {
+          background-color: var(--page-accent-color--main);
+          color: var(--page-accent-color--dark)
+        }
+      }
+      li {
+        position: relative;
+        padding: 1rem;
+        padding-bottom: 3rem;
+        &[aria-checked=true] {
+          opacity: .3;
+        }
+        > button {
+          color: var(--page-text-color--main);
+          background-color: var(--html-background-color);
+          padding: .75rem;
+          border: thin solid var(--page-accent-color--main);
+          position: absolute;
+          bottom: 0;
+          right: 0;
+        }
+      }
+      pre {
+        max-width: 35ch;
+        white-space: pre-wrap;
+        span {
+          outline: thin solid var(--page-background-color--simple);
+          display: block;
+          margin: .5rem;
+          padding: .5rem;
+          background-color: var(--page-background-color);
+        }
+      }
+    }
+
+    ul {
+      margin: 0 1rem;
+      padding: 0;
+    }
+
+    li {
+      margin: 0 0 .5rem;
+      outline: thin solid var(--page-accent-color--dark);
+      padding: .5rem;
+      font-size: 1.5rem;
+      min-width: 200px;
+
+      .ingredient {
+        font-weight: bold;
+        text-decoration: underline;
+      }
+
+      &:hover {
+        background-color: var(--page-accent-color--pastel-light);
+        color: var(--page-text-color--dark);
+        cursor: pointer;
+        outline: thick solid white;
+
+        .amount {
+          background-color: var(--page-accent-color--dark);
+          color: var(--page-text-color--main);
+        }
+        .ingredient {
+          background-color: var(--page-text-color--main);
+        }
+
+
+        &::marker {
+          color: var(--page-text-color--main);
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+#day-container {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  display: inline-flex;
+  flex-direction: column;
+
+  .ui--video__stage {
+    --scale: 1.5;
+    --video-height: calc(var(--scale) * 100px);
+    --video-width: calc(var(--scale) * 169px);
+  }
+}

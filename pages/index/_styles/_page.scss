@@ -1,0 +1,42 @@
+#page__index {
+  // Global reset for lists
+  ul {
+    padding: 0;
+    list-style: none;
+  }
+
+  article {
+    figure {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 300px;
+      margin: 0 auto;
+
+      // Reset any potential default iframe styles
+      iframe {
+        width: 100%;
+        height: 200px;
+      }
+
+      // Image styling
+      img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+    }
+  }
+
+  > footer {
+    ul {
+      display: flex;
+      align-items: center; // Changed to 'align-items' for more precise alignment
+      justify-content: center;
+
+      li {
+        padding: 1rem;
+      }
+    }
+  }
+}

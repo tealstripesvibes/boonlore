@@ -1,0 +1,19 @@
+#page__demos {
+  article {
+    figure {
+      width: 300px;
+      margin: 0;
+      min-height: auto;
+      iframe.loading {
+        height: 0;
+      }
+      iframe {
+        transition: height .5s;
+        height: 200px;
+      }
+      img {
+        width: 100%;
+      }
+    }
+  }
+}

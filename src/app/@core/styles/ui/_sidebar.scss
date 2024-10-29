@@ -1,0 +1,137 @@
+#logo {
+  padding: 2rem 0 0;
+}
+
+#sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 250px;
+  color: var(--page-text-color--main);
+  z-index: 1000;
+
+  --transition-duration: 0.3s; /* Define transition duration */
+  --hover-transition-duration: 0.2s; /* Define hover transition duration */
+
+  transition: transform var(--transition-duration) ease-in-out;
+  background: rgba(10, 10, 10, .95);
+  border-right: thick solid var(--page-text-color--main);
+  padding-right: 1rem;
+
+  &.open {
+    transform: translateX(0);
+    padding-right: 1rem;
+  }
+
+  &.closed {
+    transform: translateX(-100%);
+
+    .menu-toggle {
+      left: 100%;
+    }
+  }
+
+  nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    width: 100%;
+
+    a {
+      color: var(--page-text-color--main);
+      font-weight: bold;
+      font-size: 1.2em;
+      padding: 1rem 0;
+      text-decoration: none;
+      transition: background-color var(--hover-transition-duration);
+      width: 100%;
+      text-align: center;
+
+      &:hover,
+      &.active {
+        color: var(--navlink-color-fg--active);
+        background-color: var(--navlink-color-bg--active);
+      }
+    }
+  }
+
+  .menu-toggle {
+    position: fixed;
+    white-space: nowrap;
+    bottom: 0;
+    left: 0;
+    border: thin solid var(--page-text-color--main);
+    background: var(--page-accent-color--dark);
+    color: var(--page-text-color--main);
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    z-index: 1100;
+    transition: background-color var(--hover-transition-duration), left var(--hover-transition-duration);
+
+    &:before {
+      content: '[';
+    }
+
+    &:after {
+      content: ']';
+    }
+
+  }
+}
+
+/************************************
+ *             Mobile               *
+ ************************************/
+@media screen and (max-width: 1200px) {
+  #application-container:has(#sidebar.closed) {
+    main {
+      transition: filter .3s;
+    }
+  }
+  #application-container:has(#sidebar.open) {
+    main {
+      filter: blur(10px);
+      transition: filter .3s;
+    }
+  }
+  .preloader-wrapper:is(.preload, .loading) + #sidebar {
+    display: none;
+  }
+  #sidebar {
+    width: 80%;
+    max-width: 300px;
+
+    &.closed {
+      transform: translateX(-100%);
+    }
+
+    nav {
+      width: 100%;
+    }
+
+    .menu-toggle {
+      display: block;
+    }
+  }
+}
+
+/************************************
+ *             Desktop              *
+ ************************************/
+@media screen and (min-width: 1201px) {
+  #sidebar {
+    width: 150px;
+  }
+
+  #sidebar .menu-toggle {
+    display: none;
+  }
+}

@@ -1,0 +1,22 @@
+.input-wrapper {
+  max-width: 100%;
+  display: flex;
+  outline: var(--input-wrapper-outline);
+  flex-flow: column;
+  padding: 1ch;
+  &:hover,
+  &:focus-within {
+    background: rgba(#ccc, 0.5);
+  }
+}
+.form-item {
+  max-width: 100%;
+  display: inline-flex;
+  flex-direction: column;
+  margin: 0;
+  > * {
+    display: inline-block;
+    max-width: 100%;
+    padding: 1ch;
+  }
+}

@@ -1,0 +1,45 @@
+#main-nav {
+  max-width: 80vw;
+  flex: 1 1 0;
+  ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  a {
+    font-weight: 800;
+    font-size: 1.7em;
+    text-decoration: none;
+    padding: 1rem;
+    color: var(--navlink-color-fg);
+    background: var(--navlink-color-bg);
+    &.is-active {
+      color: var(--navlink-color-fg--active);
+      background: var(--navlink-color-bg--active);
+    }
+    &:hover {
+      color: var(--navlink-color-fg--active); /* Yellow color for active or hovered links */
+    }
+  }
+}
+
+#main-nav {
+  ul {
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+  li:has(a:not(.is-active)) {
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
+  }
+  a {
+    @media screen and (max-width: 768px) {
+      font-size: 1.2em;
+    }
+  }
+}

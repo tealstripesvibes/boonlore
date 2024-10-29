@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 1000 1000">
+    <style type="text/css">
+        .svg-logo-a{fill:#f4f4f4;}
+        .svg-logo-b{fill:#11A3A3;}
+        .svg-logo-d{fill:#50f0f0;}
+        .svg-logo-c{fill:#4C4C4C;}
+        text {
+            font-size: 500px;
+            font-weight: bold;
+        }
+    </style>
+    <rect class="svg-logo-c" x="1.5" y="1.5" width="1000" height="1000"/>
+    <rect class="svg-logo-a" x="890" y="540" width="50" height="300"/>
+    <rect class="svg-logo-d" x="20" y="0" width="50" height="700"/>
+    <rect class="svg-logo-b" x="550" y="200" width="300" height="350"/>
+    <g>
+        <g>
+            <text class="svg-logo-a" x="100" y="900" fill="black">b</text>
+            <text class="svg-logo-b" x="300" y="700" fill="black">o</text>
+            <text class="svg-logo-c" x="550" y="500" fill="black">o</text>
+            <text class="svg-logo-d" x="700" y="300" fill="black">f</text>
+        </g>
+    </g>
+</svg>

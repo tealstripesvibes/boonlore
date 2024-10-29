@@ -1,0 +1,72 @@
+#page__tutorials {
+  padding: 20px;
+  color: var(--page-text-color--main);
+
+  header {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin: 1rem 0;
+  }
+
+  section {
+    width: min(300px, 90%);
+  }
+  details {
+    margin: 1rem 0;
+
+    summary {
+      background-color: var(--page-accent-color--dark);
+      border: thin solid var(--page-text-color--main);
+      padding: .5rem;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    &[open] {
+      code, pre {
+        background-color: var(--page-accent-color--pastel-light);
+        color: var(--page-text-color--dark)
+      }
+    }
+  }
+
+  h1 {
+    font-size: 3rem; /* Keeping h1 size consistent as defined in root */
+    color: var(--page-header-color--main); /* Uses the yellow color for headers */
+  }
+
+  h2 {
+    font-size: 2rem;
+    color: var(--page-accent-color--main); /* Accent color for subheadings */
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--page-text-color--main);
+    margin-bottom: 15px;
+  }
+
+  pre {
+    text-align: left;
+    background-color: var(--page-accent-color--dark); /* Darker background for code blocks */
+    color: var(--page-text-color--main); /* Wheat text inside code blocks */
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+  }
+
+  code {
+    background-color: var(--page-accent-color--dark);
+    color: var(--page-text-color--main);
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-family: var(--error-font-family); /* Use JetBrains Mono if you want consistency */
+  }
+}
