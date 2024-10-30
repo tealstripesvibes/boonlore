@@ -1,12 +1,14 @@
-// pages/articles/@id/_data/learning.ts
+// pages/articles/@id/_articles/learning.ts
 
 import React from "react";
 import { Article } from "../../types";
+import literacy_health from "../../images/literacy.health_wellness.webp";
 
 export const learning: Article = {
   "@context": "https://schema.org",
   "@type": "Article",
   headline: "Learning",
+  image: literacy_health,
   hasPart: [
     {
       "@type": "CreativeWork",

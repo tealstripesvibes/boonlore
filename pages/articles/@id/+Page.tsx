@@ -4,11 +4,10 @@ import "../_styles/_page.scss";
 import { MainHeader } from "@core/components/layout/components/header/MainHeader";
 import { useDisposition } from "@widgets/disposition/Disposition";
 import Markdown from "react-markdown";
-import { Head } from "vike-react/Head";
 import { usePageContext } from "vike-react/usePageContext";
 import { ReactNode } from "react";
 import { DispositionEmblem } from "@core/components/layout/components/logo/DispositionEmblem";
-import { articles } from "./_data";
+import { articles } from "./+data";
 
 export { Page };
 
@@ -32,7 +31,9 @@ function ArticleContent({
   headline,
   content,
   mood,
+  image,
 }: {
+  image?: string | string[];
   headline: string;
   content: ReactNode;
   mood: string;
@@ -41,6 +42,14 @@ function ArticleContent({
     <main id="page__articles">
       <MainHeader />
       <article>
+        {image ? (
+          <img
+            width={300}
+            alt={headline}
+            src={typeof image === "string" ? image : image[0]}
+          />
+        ) : null}
+
         <h1>{headline}</h1>
         <p>Mood: {mood}</p>
         <DispositionEmblem />
@@ -69,30 +78,11 @@ function Page() {
   const url = typeof window !== "undefined" ? window.location.href : "";
 
   // Generate JSON-LD structured data for SEO
-  const seoData = {
-    "@context": article["@context"],
-    "@type": article["@type"],
-    headline: article.headline,
-    author: article.author,
-    datePublished: article.datePublished,
-    mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": url,
-    },
-    hasPart: article.hasPart?.map((part: { [x: string]: any; name: any }) => ({
-      "@type": part["@type"],
-      name: part.name,
-    })),
-  };
 
   return (
     <>
-      <Head>
-        <title>{article.headline}</title>
-        <meta name="description" content={`Read about ${article.headline}`} />
-        <script type="application/ld+json">{JSON.stringify(seoData)}</script>
-      </Head>
       <ArticleContent
+        image={article.image}
         headline={article.headline}
         content={content}
         mood={mood}

@@ -1,10 +1,10 @@
 export const siteDomain = import.meta.env.VITE_DOMAIN;
 const projectName = import.meta.env.VITE_PROJECT_NAME || siteDomain;
 const disposition = import.meta.env.VITE_DISPOSITION || "";
-const cacheVersionKey = import.meta.env.VITE_CACHE_VERSION_KEY || "000";
+const appVersionKey = import.meta.env.VITE_APP_VERSION_KEY || "v0.0.1";
 
-const logoPath = `/sites/${cacheVersionKey}/logo/logo.webp`;
-const ogImagePath = `/sites/${cacheVersionKey}/og/og-image.png`;
+const logoPath = `/sites/${appVersionKey}/logo/logo.webp`;
+const ogImagePath = `/sites/${appVersionKey}/og/og-image.png`;
 const themeColor = import.meta.env.VITE_THEME_COLOR
   ? `#${import.meta.env.VITE_THEME_COLOR}`
   : "#11abab";

@@ -1,7 +1,7 @@
 import { MainHeader } from "@core/components/layout/components/header/MainHeader";
 import "./_styles/_page.scss";
 import { Head } from "vike-react/Head";
-import { articles } from "./@id/_data";
+import { articles } from "./@id/+data";
 import { intrinsicRoutes } from "@identities/routes";
 
 export { Page };

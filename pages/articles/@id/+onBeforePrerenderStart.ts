@@ -1,4 +1,4 @@
-import { articles } from "./_data";
+import { articles } from "./+data";
 
 export { onBeforePrerenderStart };
 

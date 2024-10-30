@@ -1,4 +1,4 @@
-// pages/articles/@id/_data/literacies.tsx
+// pages/articles/@id/_articles/literacies.tsx
 
 import React from "react";
 import { generateCacheKey } from "@widgets/portal/display/Today";

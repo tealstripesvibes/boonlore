@@ -22,7 +22,7 @@ import { useLocalStorage } from "@services/storage/localStorage/hooks/useLocalSt
 
 const VIMEO_KEY = "1024105771/ad4acd0d16";
 
-type DayComponentName = "day.widget" | "day.factoid_list";
+type DayComponentName = "day.widget" | "day.axiom";
 type DayCacheStyle = "key" | "href";
 
 const parseVideoKey = (vimeoKey: string) => {
