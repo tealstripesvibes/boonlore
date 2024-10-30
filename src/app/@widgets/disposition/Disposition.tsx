@@ -1,3 +1,5 @@
+// src/app/@widgets/disposition/Disposition.tsx
+
 import { IDispositionName } from "@identities/dispositions/types";
 import { createContext, useContext, useEffect, useState } from "react";
 import { trackEvent } from "@features/analytics/initAnalytics";
@@ -7,21 +9,25 @@ const DispositionContext = createContext({
   setDisposition: (_: IDispositionName) => {},
 });
 
-export function useDisposition(): [
-  IDispositionName,
-  (disposition: IDispositionName) => void,
-] {
+export function useDisposition(
+  primedDisposition?: IDispositionName, // Accepts optional primedDisposition
+): [IDispositionName, (disposition: IDispositionName) => void] {
   const { disposition, setDisposition } = useContext(DispositionContext);
-  const [previousDisposition, setPreviousDisposition] = useState(disposition);
+  const [previousDisposition, setPreviousDisposition] = useState(
+    disposition || primedDisposition || defaultDisposition,
+  );
+
   useEffect(() => {
+    console.log({ primedDisposition });
+    if (!previousDisposition && primedDisposition) {
+      setDisposition(primedDisposition);
+    }
     setPreviousDisposition(disposition);
     trackEvent("disposition:change");
-    return () => {};
-  }, [disposition]);
+  }, [disposition, primedDisposition]);
 
   return [disposition, setDisposition];
 }
-
 export function DispositionProvider({
   children,
 }: {

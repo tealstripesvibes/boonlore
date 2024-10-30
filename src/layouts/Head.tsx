@@ -27,7 +27,6 @@ export default function HeadDefault() {
       <meta name="theme-color" content={themeColor} />
       <meta property="og:type" content="website" />
       <meta property="og:url" content={`https://${siteDomain}`} />
-      <meta property="og:image" content={ogImagePath} />
       <meta property="og:title" content={siteTitle} />
       <meta property="og:description" content={siteDescription} />
       <meta name="description" content={siteDescription} />
