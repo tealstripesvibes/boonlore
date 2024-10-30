@@ -1,5 +1,5 @@
 import "./_styles/_page.scss";
-import { Helmet } from "react-helmet-async";
+import { Head } from "vike-react/Head";
 import { MainHeader } from "@core/components/layout/components/header/MainHeader";
 import { useMemo } from "react";
 
@@ -69,9 +69,9 @@ function Page() {
   }, []);
   return (
     <main id="page__courses">
-      <Helmet>
+      <Head>
         <title>Courses</title>
-      </Helmet>
+      </Head>
       <MainHeader />
       <article>
         <h1>Courses</h1>

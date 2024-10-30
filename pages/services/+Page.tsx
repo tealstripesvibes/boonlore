@@ -1,14 +1,14 @@
 import { MainHeader } from "@core/components/layout/components/header/MainHeader";
-import { Helmet } from "react-helmet-async";
+import { Head } from "vike-react/Head";
 export { Page };
 import "./_styles/_page.scss";
 
 function Page() {
   return (
     <main id="page__services">
-      <Helmet>
+      <Head>
         <title>Services</title>
-      </Helmet>
+      </Head>
       <MainHeader />
       <article>
         <h1>Services</h1>

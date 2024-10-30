@@ -2,7 +2,7 @@ import { MainHeader } from "@core/components/layout/components/header/MainHeader
 import "./_styles/_page.scss";
 import { IDispositionName } from "@identities/dispositions/types";
 import { useDisposition } from "@widgets/disposition/Disposition";
-import { Helmet } from "react-helmet-async";
+import { Head } from "vike-react/Head";
 import { extrinsicRoutes } from "@identities/routes/domains/extrinsicRoutes";
 import { MainFooter } from "@core/components/layout/components/footer/MainFooter";
 
@@ -31,9 +31,9 @@ function ActionButton({
 function Page() {
   return (
     <main id="page__home">
-      <Helmet>
+      <Head>
         <title>Home</title>
-      </Helmet>
+      </Head>
       <MainHeader />
       <article>
         <h1>Hello</h1>

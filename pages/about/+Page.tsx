@@ -1,7 +1,7 @@
 import { MainHeader } from "@core/components/layout/components/header/MainHeader";
 import "./_about.scss";
 import "react-multi-carousel/lib/styles.css";
-import { Helmet } from "react-helmet-async";
+import { Head } from "vike-react/Head";
 import { Testimonials } from "./components/Testimonials";
 import { Timeline } from "./components/Timeline";
 import { MoreLinks } from "./components/MoreLinks";
@@ -16,9 +16,9 @@ export { Page };
 function Page() {
   return (
     <main id="page__about">
-      <Helmet>
+      <Head>
         <title>About</title>
-      </Helmet>
+      </Head>
       <MainHeader />
       <article>
         <h1>About</h1>

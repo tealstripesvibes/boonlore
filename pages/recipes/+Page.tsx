@@ -1,5 +1,5 @@
 import "./_styles/_page.scss";
-import { Helmet } from "react-helmet-async";
+import { Head } from "vike-react/Head";
 import { MainHeader } from "@core/components/layout/components/header/MainHeader";
 import { BoonberryPie } from "./components/BoonberryPie";
 import { DispositionSwitch } from "@widgets/disposition/Disposition";
@@ -20,9 +20,9 @@ function Page() {
   const honk = selectHonkOrientation();
   return (
     <main id="page__recipes">
-      <Helmet>
+      <Head>
         <title>Recipes</title>
-      </Helmet>
+      </Head>
       <MainHeader />
       <article>
         <h1>Recipes</h1>

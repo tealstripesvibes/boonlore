@@ -22,37 +22,66 @@ import { useLocalStorage } from "@services/storage/localStorage/hooks/useLocalSt
 
 const VIMEO_KEY = "1024105771/ad4acd0d16";
 
-function parseVideoKey(vimeoKey: string) {
-  const [videoId, videoHash] = vimeoKey.split("/");
-  return { videoId, videoHash };
-}
+type DayComponentName = "day.widget" | "day.factoid_list";
+type DayCacheStyle = "key" | "href";
 
-function generateCacheKey() {
-  const manualKey = 5;
-  const intervalKey = new Date().toDateString();
-  return `day-container:${manualKey}:${intervalKey}`;
-}
+const parseVideoKey = (vimeoKey: string) => {
+  const [videoId, videoHash] = vimeoKey.split("/");
+  if (!videoId || !videoHash) {
+    throw new Error("Invalid VIMEO_KEY format. Expected 'videoId/videoHash'.");
+  }
+  return { videoId, videoHash };
+};
+
+export const generateCacheKey = (
+  component: DayComponentName,
+  style: DayCacheStyle = "key",
+  options?: { sceneId?: string },
+): string => {
+  const manualKey = import.meta.env.VITE_CACHE_VERSION_KEY || "5";
+  const date = new Date();
+  const interval = `[${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}]`;
+
+  let key = [component, manualKey, interval].join("--");
+
+  if (options?.sceneId) {
+    key += `@${options.sceneId}`;
+  }
+
+  key = key.replace(/[^a-zA-Z0-9_\-\[]\.]/g, "_").toLowerCase();
+
+  return key;
+};
 
 export function Today() {
   const [canDismiss, setCanDismiss] = useState(false);
-  const [dismissed, setDismissal] = useLocalStorage(generateCacheKey(), false);
+  const cacheKey = generateCacheKey("day.widget", "key", { sceneId: "today" });
+  const [dismissed, setDismissal] = useLocalStorage(cacheKey, false);
 
   const handlePlay = () => setCanDismiss(true);
   const handleDismiss = () => setDismissal(true);
 
   const { videoId, videoHash } = parseVideoKey(VIMEO_KEY);
 
+  if (dismissed) return null;
+
   return (
-    !dismissed && (
-      <div id="day-container">
-        {canDismiss && <button onClick={handleDismiss}>Close for today</button>}
-        <VimeoVideo
-          doAutoplay={false}
-          onPlay={handlePlay}
-          videoId={videoId}
-          videoHash={videoHash}
-        />
-      </div>
-    )
+    <div id="day-container" className={cacheKey}>
+      {canDismiss && (
+        <button
+          onClick={handleDismiss}
+          className="dismiss-button"
+          aria-label="Dismiss today's video"
+        >
+          Close for today
+        </button>
+      )}
+      <VimeoVideo
+        doAutoplay={false}
+        onPlay={handlePlay}
+        videoId={videoId}
+        videoHash={videoHash}
+      />
+    </div>
   );
 }

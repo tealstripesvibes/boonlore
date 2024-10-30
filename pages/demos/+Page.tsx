@@ -1,5 +1,5 @@
 import "./_styles/_page.scss";
-import { Helmet } from "react-helmet-async";
+import { Head } from "vike-react/Head";
 import { MainHeader } from "@core/components/layout/components/header/MainHeader";
 
 export { Page };
@@ -7,9 +7,9 @@ export { Page };
 function Page() {
   return (
     <main id="page__demos">
-      <Helmet>
+      <Head>
         <title>Demos</title>
-      </Helmet>
+      </Head>
       <MainHeader />
       <article>
         <h1>Demos</h1>

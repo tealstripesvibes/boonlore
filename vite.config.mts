@@ -89,9 +89,6 @@ export default defineConfig({
     resolve: {
         alias: aliasConfig,
     },
-    ssr: {
-        noExternal: ['react-helmet-async'],
-    },
     plugins: [
         vike({prerender: true}),
         mdx({remarkPlugins: [remarkGfm]}),

@@ -1,3 +1,4 @@
+@use "sass:meta";
 .feature {
   display: flex;
   flex-direction: column;
@@ -5,11 +6,11 @@
   justify-items: center;
 }
 
-@import "user/login-requirement";
-@import "user/logout-button";
-@import "concept/concept";
-@import "event/event";
-@import "scene/scene";
+@include meta.load-css("user/login-requirement");
+@include meta.load-css("user/logout-button");
+@include meta.load-css("concept/concept");
+@include meta.load-css("event/event");
+@include meta.load-css("scene/scene");
 
 .feature[data-feature-name=app--site_switcher] {
   select {

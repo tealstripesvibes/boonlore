@@ -1,5 +1,5 @@
 import "./_styles/_page.scss";
-import { Helmet } from "react-helmet-async";
+import { Head } from "vike-react/Head";
 import { MainHeader } from "@core/components/layout/components/header/MainHeader";
 import { DispositionSwitch } from "@widgets/disposition/Disposition";
 import { DispositionEmblem } from "@core/components/layout/components/logo/DispositionEmblem";
@@ -9,9 +9,9 @@ export { Page };
 function Page() {
   return (
     <main id="page__recipe_categories">
-      <Helmet>
+      <Head>
         <title>Recipe Categories</title>
-      </Helmet>
+      </Head>
       <MainHeader />
       <article>
         <h1>Recipe Categories</h1>

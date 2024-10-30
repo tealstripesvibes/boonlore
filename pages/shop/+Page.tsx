@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import { Head } from "vike-react/Head";
 export { Page };
 
 import { MainHeader } from "@core/components/layout/components/header/MainHeader";
@@ -14,9 +14,9 @@ const ShoppingHub = lazy(() =>
 function Page() {
   return (
     <main id="page__shop">
-      <Helmet>
+      <Head>
         <title>Shop</title>
-      </Helmet>
+      </Head>
       <MainHeader />
       <article>
         <h1>Shop</h1>

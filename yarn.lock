@@ -4121,13 +4121,6 @@ internal-slot@^1.0.4, internal-slot@^1.0.7:
     hasown "^2.0.0"
     side-channel "^1.0.4"
 
-invariant@^2.2.4:
-  version "2.2.4"
-  resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
-  integrity sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==
-  dependencies:
-    loose-envify "^1.0.0"
-
 ipaddr.js@1.9.1:
   version "1.9.1"
   resolved "https://registry.yarnpkg.com/ipaddr.js/-/ipaddr.js-1.9.1.tgz#bff38543eeb8984825079ff3a2a8e6cbd46781b3"
@@ -4688,7 +4681,7 @@ longest-streak@^3.0.0:
   resolved "https://registry.yarnpkg.com/longest-streak/-/longest-streak-3.1.0.tgz#62fa67cd958742a1574af9f39866364102d90cd4"
   integrity sha512-9Ri+o0JYgehTaVBBDoMqIl8GXtbWg711O3srftcHhZ0dqnETqLaoIK0x17fUw9rFSlK/0NlsKe0Ahhyl5pXE2g==
 
-loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.4.0:
+loose-envify@^1.1.0, loose-envify@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
   integrity sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==
@@ -5861,20 +5854,6 @@ react-element-to-jsx-string@^15.0.0:
     is-plain-object "5.0.0"
     react-is "18.1.0"
 
-react-fast-compare@^3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-3.2.2.tgz#929a97a532304ce9fee4bcae44234f1ce2c21d49"
-  integrity sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==
-
-react-helmet-async@^2.0.5:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/react-helmet-async/-/react-helmet-async-2.0.5.tgz#cfc70cd7bb32df7883a8ed55502a1513747223ec"
-  integrity sha512-rYUYHeus+i27MvFE+Jaa4WsyBKGkL6qVgbJvSBoX8mbsWoABJXdEO0bZyi0F6i+4f0NuIb8AvqPMj3iXFHkMwg==
-  dependencies:
-    invariant "^2.2.4"
-    react-fast-compare "^3.2.2"
-    shallowequal "^1.1.0"
-
 react-icons@^5.3.0:
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-5.3.0.tgz#ccad07a30aebd40a89f8cfa7d82e466019203f1c"
@@ -6270,6 +6249,11 @@ safe-regex-test@^1.0.3:
   resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
+sass-migrator@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/sass-migrator/-/sass-migrator-2.2.1.tgz#803a3d534f804eb5c8ab9a0c05a4b7a9b1c267e8"
+  integrity sha512-Sa2sVC2MeL4cVcEPpd8z/R5/c8LOA0B6K39IGrJl/8WQ24lI1tLF4P8WcQJSCt/lDmJCyOmFGZTC3Rf7/6tVfQ==
+
 sass@^1.72.0:
   version "1.80.4"
   resolved "https://registry.yarnpkg.com/sass/-/sass-1.80.4.tgz#bc0418fd796cad2f1a1309d8b4d7fe44b7027de0"
@@ -6369,11 +6353,6 @@ setprototypeof@1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/setprototypeof/-/setprototypeof-1.2.0.tgz#66c9a24a73f9fc28cbe66b09fed3d33dcaf1b424"
   integrity sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==
-
-shallowequal@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/shallowequal/-/shallowequal-1.1.0.tgz#188d521de95b9087404fd4dcb68b13df0ae4e7f8"
-  integrity sha512-y0m1JoUZSlPAjXVtPPW70aZWfIL/dSP7AFkRnniLCrK/8MDKog3TySTBmckD+RObVxH0v4Tox67+F14PdED2oQ==
 
 shebang-command@^2.0.0:
   version "2.0.0"
@@ -7069,14 +7048,14 @@ vfile@^6.0.0:
     "@types/unist" "^3.0.0"
     vfile-message "^4.0.0"
 
-vike-react@^0.4.6:
-  version "0.4.18"
-  resolved "https://registry.yarnpkg.com/vike-react/-/vike-react-0.4.18.tgz#8a5075528b02737b501d94dc1999ee146abc8799"
-  integrity sha512-S7HTVvdU138vu7LZw94SUqHsDew4+lSj/jVbvpCgKPL4YEYfuNIo+1SMNxy7747bJ7W/rResc1B80UB9YCiRpw==
+vike-react@^0.5.7:
+  version "0.5.7"
+  resolved "https://registry.yarnpkg.com/vike-react/-/vike-react-0.5.7.tgz#91305f877c5c7e4b292aabb116115dd81e60660f"
+  integrity sha512-loAf5t4QmSLenjpPKzk9P3Q4lhQVltg/ze0r3k3PpF3ehBJJiOfFWvKwpCi9kvt50hNnQcZgleem5itDqN/KsA==
   dependencies:
     react-streaming "^0.3.42"
 
-vike@^0.4.167:
+vike@^0.4.199:
   version "0.4.199"
   resolved "https://registry.yarnpkg.com/vike/-/vike-0.4.199.tgz#afbbce178adb88873960d53cc2945bb2529c0264"
   integrity sha512-SOLv0cqThcH9Fux1j7Bfw/AsrUsUw9obB2EMIbWeA+HoChUC6dI0QK/t8ZU4V3ARDVo7qBnLxZCqkFnYeA4Hrg==

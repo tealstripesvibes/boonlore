@@ -7,6 +7,10 @@ interface ImportMetaEnv {
   readonly VITE_SHOP_URL: string;
   readonly VITE_BACKEND_URL: string;
 
+  //
+  readonly VITE_CACHE_VERSION_KEY: string;
+
+  // Snipcart
   readonly VITE_SNIPCART_API_KEY: string;
 }
 

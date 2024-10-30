@@ -21,7 +21,7 @@
 - **Modular Widgets**: Reusable components like forms, carousels, logos, and interactive elements, stored under `@widgets`.
 - **Identity Themes**: Multiple dispositions/themes (Bane, Bone, Bonk, Boof, Boon, Honk, Lore) providing unique branding and user experiences.
 - **Custom Styles**: Organized SCSS files for each component and page for easy theming and styling.
-- **Accessibility and SEO**: Utilizes `react-helmet-async` for managing meta tags, improving SEO and accessibility.
+- **Accessibility and SEO**: Manages meta tags, improving SEO and accessibility.
 - **Progressive Web App (PWA)**: Configured with Workbox and Vite PWA plugin for offline support and enhanced user experience.
 - **Testing and Linting**: Set up with Jest for testing and ESLint for code quality assurance.
 - **Storybook Integration**: Develop and test UI components in isolation using Storybook.
