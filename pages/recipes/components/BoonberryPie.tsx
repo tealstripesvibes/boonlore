@@ -1,115 +1,109 @@
+// pages/recipes/components/BoonberryPie.tsx
+
 import React from "react";
 import { Ingredients } from "./pie/Ingredients";
 import { PreparationSteps } from "./pie/PreparationSteps";
 import { PieInfo } from "./pie/PieInfo";
-import { Ingredient } from "../types/ingredient";
-import { RecipeStep } from "../types/step";
 
-type IngredientSet =
-  | "berries"
-  | "sugar"
-  | "crust"
-  | "cornstarch"
-  | "butter"
-  | "lemon-juice";
-type RecipeUtensil = "oven" | "saucepan";
-type RecipeIngredient = Ingredient<IngredientSet>;
+// Define interfaces matching Schema.org types
+interface HowToIngredient {
+  "@type": "HowToIngredient";
+  name: string;
+  requiredQuantity?: string;
+}
+
+interface HowToStep {
+  "@type": "HowToStep";
+  text: string;
+}
+
+interface Recipe {
+  "@context": string;
+  "@type": "Recipe";
+  name: string;
+  description?: string;
+  recipeIngredient: string[];
+  recipeInstructions: HowToStep[];
+}
 
 export function BoonberryPie() {
-  const berries: RecipeIngredient = {
-    id: "berries",
-    name: "boonberries",
-    amount: {
-      unit: "cups",
-      valence: 2,
-    },
-  };
-  const sugar: RecipeIngredient = {
-    id: "sugar",
-    name: "sugar",
-    amount: {
-      unit: "cup",
-      valence: 1,
-    },
-  };
-  const pieCrust: RecipeIngredient = {
-    id: "crust",
-    name: "pie crust",
-    amount: {
-      unit: "pre-made",
-      valence: 1,
-    },
-  };
-  const cornstarch: RecipeIngredient = {
-    id: "cornstarch",
-    name: "cornstarch",
-    amount: {
-      unit: "tbsp",
-      valence: 2,
-    },
-  };
-  const butter: RecipeIngredient = {
-    id: "butter",
-    name: "butter",
-    amount: {
-      unit: "tbsp",
-      valence: 1,
-    },
-  };
-  const lemonJuice: RecipeIngredient = {
-    id: "lemon-juice",
-    name: "lemon juice",
-    amount: {
-      unit: "tbsp",
-      valence: 2,
-    },
-  };
-  const ingredients: RecipeIngredient[] = [
-    berries,
-    sugar,
-    pieCrust,
-    cornstarch,
-    butter,
-    lemonJuice,
-  ];
-  const steps: RecipeStep<RecipeIngredient[], RecipeUtensil[]>[] = [
+  // Define ingredients as HowToIngredient objects
+  const ingredients: HowToIngredient[] = [
     {
-      id: "preheat",
-      description: ["Preheat the oven to 375°F (190°C)"],
-      utensils: ["oven"],
+      "@type": "HowToIngredient",
+      name: "boonberries",
+      requiredQuantity: "2 cups",
     },
     {
-      id: "prepare-filling",
-      description: [
-        "In a saucepan, combine boonberries, sugar, cornstarch, and lemon juice.",
-        "Cook over medium heat until the mixture thickens.",
-      ],
-      utensils: ["saucepan"],
-      ingredients: [berries, sugar, cornstarch, lemonJuice],
+      "@type": "HowToIngredient",
+      name: "sugar",
+      requiredQuantity: "1 cup",
     },
     {
-      id: "assemble-pie",
-      description: [
-        "Place the mixture into the pie crust,",
-        "dot the filling with butter,",
-        "then seal the pie with its top crust.",
-      ],
-      ingredients: [pieCrust],
+      "@type": "HowToIngredient",
+      name: "pie crust",
+      requiredQuantity: "1 (pre-made)",
     },
     {
-      id: "bake-pie",
-      description: [
-        "Bake for 45-50 minutes, or until the crust is golden brown.",
-      ],
+      "@type": "HowToIngredient",
+      name: "cornstarch",
+      requiredQuantity: "2 tbsp",
     },
     {
-      id: "let-cool",
-      description: ["Let the pie cool before serving."],
+      "@type": "HowToIngredient",
+      name: "butter",
+      requiredQuantity: "1 tbsp",
+    },
+    {
+      "@type": "HowToIngredient",
+      name: "lemon juice",
+      requiredQuantity: "2 tbsp",
     },
   ];
+
+  // Generate ingredient strings for the recipeIngredient property
+  const ingredientStrings = ingredients.map(
+    (ingredient) => `${ingredient.requiredQuantity} ${ingredient.name}`,
+  );
+
+  // Define steps as HowToStep objects
+  const steps: HowToStep[] = [
+    {
+      "@type": "HowToStep",
+      text: "Preheat the oven to 375°F (190°C).",
+    },
+    {
+      "@type": "HowToStep",
+      text: "In a saucepan, combine boonberries, sugar, cornstarch, and lemon juice. Cook over medium heat until the mixture thickens.",
+    },
+    {
+      "@type": "HowToStep",
+      text: "Place the mixture into the pie crust, dot the filling with butter, then seal the pie with its top crust.",
+    },
+    {
+      "@type": "HowToStep",
+      text: "Bake for 45-50 minutes, or until the crust is golden brown.",
+    },
+    {
+      "@type": "HowToStep",
+      text: "Let the pie cool before serving.",
+    },
+  ];
+
+  // Define the recipe object matching the Schema.org Recipe type
+  const recipe: Recipe = {
+    "@context": "https://schema.org/",
+    "@type": "Recipe",
+    name: "Boonberry Pie",
+    description: "A delicious pie made from the finest boonberries.",
+    recipeIngredient: ingredientStrings,
+    recipeInstructions: steps,
+  };
 
   return (
     <article id="boonberry-pie">
+      {/* Include the JSON-LD script */}
+      <script type="application/ld+json">{JSON.stringify(recipe)}</script>
       <PieInfo
         name="Boonberry Pie"
         description="A delicious pie made from the finest boonberries."

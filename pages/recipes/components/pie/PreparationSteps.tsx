@@ -1,8 +1,15 @@
+// pages/recipes/components/pie/PreparationSteps.tsx
+
 import React, { useState } from "react";
 import classNames from "classnames";
-import { RecipeStep } from "../../types/step";
 
-export function PreparationSteps({ steps }: { steps: RecipeStep<any, any>[] }) {
+// Define the HowToStep interface matching Schema.org
+interface HowToStep {
+  "@type": "HowToStep";
+  text: string;
+}
+
+export function PreparationSteps({ steps }: { steps: HowToStep[] }) {
   const [activeStep, setActiveStep] = useState<number | null>(null);
   const [completedSteps, setCompletedSteps] = useState<boolean[]>(
     new Array(steps.length).fill(false),
@@ -41,9 +48,7 @@ export function PreparationSteps({ steps }: { steps: RecipeStep<any, any>[] }) {
             className={classNames({ primed: primedSteps[index] })}
           >
             <pre>
-              {step.description.map((l) => (
-                <span key={l}>{l}</span>
-              ))}
+              <span>{step.text}</span>
             </pre>
             {!completedSteps[index] && (
               <>

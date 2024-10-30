@@ -1,118 +1,110 @@
+// pages/recipes/components/BaneberryPie.tsx
+
 import React from "react";
 import { Ingredients } from "./pie/Ingredients";
 import { PreparationSteps } from "./pie/PreparationSteps";
 import { PieInfo } from "./pie/PieInfo";
-import { Ingredient } from "../types/ingredient";
-import { RecipeStep } from "../types/step";
 
-type IngredientSet =
-  | "baneberries"
-  | "dark-brown-sugar"
-  | "crust"
-  | "arrowroot-powder"
-  | "vanilla-extract"
-  | "butter";
-type RecipeUtensil = "oven" | "mixing-bowl";
-type RecipeIngredient = Ingredient<IngredientSet>;
+// Define interfaces matching Schema.org types
+interface HowToIngredient {
+  "@type": "HowToIngredient";
+  name: string;
+  requiredQuantity?: string;
+}
+
+interface HowToStep {
+  "@type": "HowToStep";
+  text: string;
+}
+
+interface Recipe {
+  "@context": string;
+  "@type": "Recipe";
+  name: string;
+  description?: string;
+  recipeIngredient: string[];
+  recipeInstructions: HowToStep[];
+}
 
 export function BaneberryPie() {
-  const baneberries: RecipeIngredient = {
-    id: "baneberries",
-    name: "baneberries",
-    amount: {
-      unit: "cups",
-      valence: 3,
+  // Define ingredients as HowToIngredient objects
+  const ingredients: HowToIngredient[] = [
+    {
+      "@type": "HowToIngredient",
+      name: "baneberries",
+      requiredQuantity: "3 cups",
     },
-  };
-  const darkBrownSugar: RecipeIngredient = {
-    id: "dark-brown-sugar",
-    name: "dark brown sugar",
-    amount: {
-      unit: "cup",
-      valence: 1,
+    {
+      "@type": "HowToIngredient",
+      name: "dark brown sugar",
+      requiredQuantity: "1 cup",
     },
-  };
-  const pieCrust: RecipeIngredient = {
-    id: "crust",
-    name: "pie crust",
-    amount: {
-      unit: "homemade or store-bought",
-      valence: 1,
+    {
+      "@type": "HowToIngredient",
+      name: "pie crust",
+      requiredQuantity: "1 (homemade or store-bought)",
     },
-  };
-  const arrowrootPowder: RecipeIngredient = {
-    id: "arrowroot-powder",
-    name: "arrowroot powder",
-    amount: {
-      unit: "tbsp",
-      valence: 3,
+    {
+      "@type": "HowToIngredient",
+      name: "arrowroot powder",
+      requiredQuantity: "3 tbsp",
     },
-  };
-  const vanillaExtract: RecipeIngredient = {
-    id: "vanilla-extract",
-    name: "vanilla extract",
-    amount: {
-      unit: "tsp",
-      valence: 1,
+    {
+      "@type": "HowToIngredient",
+      name: "vanilla extract",
+      requiredQuantity: "1 tsp",
     },
-  };
-  const butter: RecipeIngredient = {
-    id: "butter",
-    name: "butter",
-    amount: {
-      unit: "tbsp",
-      valence: 2,
+    {
+      "@type": "HowToIngredient",
+      name: "butter",
+      requiredQuantity: "2 tbsp",
     },
-  };
-  const ingredients: RecipeIngredient[] = [
-    baneberries,
-    darkBrownSugar,
-    pieCrust,
-    arrowrootPowder,
-    vanillaExtract,
-    butter,
   ];
 
-  const steps: RecipeStep<RecipeIngredient[], RecipeUtensil[]>[] = [
+  // Generate ingredient strings for the recipeIngredient property
+  const ingredientStrings = ingredients.map(
+    (ingredient) => `${ingredient.requiredQuantity} ${ingredient.name}`,
+  );
+
+  // Define steps as HowToStep objects
+  const steps: HowToStep[] = [
     {
-      id: "preheat",
-      description: ["Preheat the oven to 400°F (200°C)."],
-      utensils: ["oven"],
+      "@type": "HowToStep",
+      text: "Preheat the oven to 400°F (200°C).",
     },
     {
-      id: "prepare-filling",
-      description: [
-        "In a large mixing bowl, combine baneberries, dark brown sugar, arrowroot powder, and vanilla extract.",
-      ],
-      utensils: ["mixing-bowl"],
-      ingredients: [
-        baneberries,
-        darkBrownSugar,
-        arrowrootPowder,
-        vanillaExtract,
-      ],
+      "@type": "HowToStep",
+      text: "In a large mixing bowl, combine baneberries, dark brown sugar, arrowroot powder, and vanilla extract.",
     },
     {
-      id: "assemble-pie",
-      description: [
-        "Pour the mixture into the pie crust, dot with butter, and cover with the top crust.",
-      ],
-      ingredients: [pieCrust, butter],
+      "@type": "HowToStep",
+      text: "Pour the mixture into the pie crust, dot with butter, and cover with the top crust.",
     },
     {
-      id: "bake-pie",
-      description: [
-        "Bake for 50-55 minutes, until the crust is golden brown and the filling is bubbly.",
-      ],
+      "@type": "HowToStep",
+      text: "Bake for 50-55 minutes, until the crust is golden brown and the filling is bubbly.",
     },
     {
-      id: "let-cool",
-      description: ["Let the pie cool completely before serving."],
+      "@type": "HowToStep",
+      text: "Let the pie cool completely before serving.",
     },
   ];
+
+  // Define the recipe object matching the Schema.org Recipe type
+  const recipe: Recipe = {
+    "@context": "https://schema.org/",
+    "@type": "Recipe",
+    name: "Baneberry Pie",
+    description:
+      "A bold and mysterious pie made with the powerful flavors of baneberries.",
+    recipeIngredient: ingredientStrings,
+    recipeInstructions: steps,
+  };
 
   return (
     <article id="baneberry-pie">
+      {/* Include the JSON-LD script */}
+      <script type="application/ld+json">{JSON.stringify(recipe)}</script>
       <PieInfo
         name="Baneberry Pie"
         description="A bold and mysterious pie made with the powerful flavors of baneberries."

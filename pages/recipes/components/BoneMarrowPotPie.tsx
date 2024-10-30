@@ -1,181 +1,143 @@
+// pages/recipes/components/BoneMarrowPotPie.tsx
+
 import React from "react";
 import { Ingredients } from "./pie/Ingredients";
 import { PreparationSteps } from "./pie/PreparationSteps";
 import { PieInfo } from "./pie/PieInfo";
-import { Ingredient } from "../types/ingredient";
-import { RecipeStep } from "../types/step";
 
-type IngredientSet =
-  | "bone-marrow"
-  | "beef-broth"
-  | "carrots"
-  | "celery"
-  | "onion"
-  | "garlic"
-  | "thyme"
-  | "flour"
-  | "butter"
-  | "pie-crust"
-  | "salt-and-pepper";
-type RecipeUtensil = "oven" | "large-pot" | "whisk";
-type RecipeIngredient = Ingredient<IngredientSet>;
+// Define interfaces matching Schema.org types
+interface HowToIngredient {
+  "@type": "HowToIngredient";
+  name: string;
+  requiredQuantity?: string;
+}
+
+interface HowToStep {
+  "@type": "HowToStep";
+  text: string;
+}
+
+interface Recipe {
+  "@context": string;
+  "@type": "Recipe";
+  name: string;
+  description?: string;
+  recipeIngredient: string[];
+  recipeInstructions: HowToStep[];
+}
 
 export function BoneMarrowPotPie() {
-  const boneMarrow: RecipeIngredient = {
-    id: "bone-marrow",
-    name: "bone marrow",
-    amount: {
-      unit: "large bones",
-      valence: 4,
+  // Define ingredients as HowToIngredient objects
+  const ingredients: HowToIngredient[] = [
+    {
+      "@type": "HowToIngredient",
+      name: "bone marrow",
+      requiredQuantity: "4 large bones",
     },
-  };
-  const beefBroth: RecipeIngredient = {
-    id: "beef-broth",
-    name: "beef broth",
-    amount: {
-      unit: "cups",
-      valence: 2,
+    {
+      "@type": "HowToIngredient",
+      name: "beef broth",
+      requiredQuantity: "2 cups",
     },
-  };
-  const carrots: RecipeIngredient = {
-    id: "carrots",
-    name: "carrots",
-    amount: {
-      unit: "diced",
-      valence: 2,
+    {
+      "@type": "HowToIngredient",
+      name: "carrots, diced",
+      requiredQuantity: "2",
     },
-  };
-  const celery: RecipeIngredient = {
-    id: "celery",
-    name: "celery",
-    amount: {
-      unit: "stalks diced",
-      valence: 2,
+    {
+      "@type": "HowToIngredient",
+      name: "celery stalks, diced",
+      requiredQuantity: "2",
     },
-  };
-  const onion: RecipeIngredient = {
-    id: "onion",
-    name: "onion",
-    amount: {
-      unit: "diced",
-      valence: 1,
+    {
+      "@type": "HowToIngredient",
+      name: "onion, diced",
+      requiredQuantity: "1",
     },
-  };
-  const garlic: RecipeIngredient = {
-    id: "garlic",
-    name: "garlic",
-    amount: {
-      unit: "cloves minced",
-      valence: 2,
+    {
+      "@type": "HowToIngredient",
+      name: "garlic cloves, minced",
+      requiredQuantity: "2",
     },
-  };
-  const thyme: RecipeIngredient = {
-    id: "thyme",
-    name: "thyme",
-    amount: {
-      unit: "tsp",
-      valence: 1,
+    {
+      "@type": "HowToIngredient",
+      name: "thyme",
+      requiredQuantity: "1 tsp",
     },
-  };
-  const flour: RecipeIngredient = {
-    id: "flour",
-    name: "flour",
-    amount: {
-      unit: "tbsp",
-      valence: 2,
+    {
+      "@type": "HowToIngredient",
+      name: "flour",
+      requiredQuantity: "2 tbsp",
     },
-  };
-  const butter: RecipeIngredient = {
-    id: "butter",
-    name: "butter",
-    amount: {
-      unit: "tbsp",
-      valence: 2,
+    {
+      "@type": "HowToIngredient",
+      name: "butter",
+      requiredQuantity: "2 tbsp",
     },
-  };
-  const pieCrust: RecipeIngredient = {
-    id: "pie-crust",
-    name: "pie crust",
-    amount: {
-      unit: "pre-made or homemade",
-      valence: 1,
+    {
+      "@type": "HowToIngredient",
+      name: "pie crust",
+      requiredQuantity: "1 (pre-made or homemade)",
     },
-  };
-  const saltAndPepper: RecipeIngredient = {
-    id: "salt-and-pepper",
-    name: "salt and pepper",
-    amount: {
-      unit: "to taste",
-      valence: 1,
+    {
+      "@type": "HowToIngredient",
+      name: "salt and pepper",
+      requiredQuantity: "to taste",
     },
-  };
-
-  const ingredients: RecipeIngredient[] = [
-    boneMarrow,
-    beefBroth,
-    carrots,
-    celery,
-    onion,
-    garlic,
-    thyme,
-    flour,
-    butter,
-    pieCrust,
-    saltAndPepper,
   ];
 
-  const steps: RecipeStep<RecipeIngredient[], RecipeUtensil[]>[] = [
+  // Generate ingredient strings for the recipeIngredient property
+  const ingredientStrings = ingredients.map(
+    (ingredient) => `${ingredient.requiredQuantity} ${ingredient.name}`,
+  );
+
+  // Define steps as HowToStep objects
+  const steps: HowToStep[] = [
     {
-      id: "preheat",
-      description: ["Preheat oven to 375°F (190°C)."],
-      utensils: ["oven"],
+      "@type": "HowToStep",
+      text: "Preheat oven to 375°F (190°C).",
     },
     {
-      id: "sauté-vegetables",
-      description: [
-        "In a large pot, melt butter over medium heat and sauté onions, garlic, carrots, and celery until tender.",
-      ],
-      utensils: ["large-pot"],
-      ingredients: [butter, onion, garlic, carrots, celery],
+      "@type": "HowToStep",
+      text: "In a large pot, melt butter over medium heat and sauté onions, garlic, carrots, and celery until tender.",
     },
     {
-      id: "make-roux",
-      description: [
-        "Add flour to the vegetables and stir to form a roux, cooking for about 2 minutes.",
-      ],
-      utensils: ["large-pot"],
-      ingredients: [flour],
+      "@type": "HowToStep",
+      text: "Add flour to the vegetables and stir to form a roux, cooking for about 2 minutes.",
     },
     {
-      id: "add-broth",
-      description: ["Slowly whisk in the beef broth and bring to a simmer."],
-      utensils: ["whisk", "large-pot"],
-      ingredients: [beefBroth],
+      "@type": "HowToStep",
+      text: "Slowly whisk in the beef broth and bring to a simmer.",
     },
     {
-      id: "add-marrow",
-      description: [
-        "Once simmering, add roasted bone marrow from the bones and stir in thyme, salt, and pepper. Cook for 10 minutes to thicken.",
-      ],
-      utensils: ["large-pot"],
-      ingredients: [boneMarrow, thyme, saltAndPepper],
+      "@type": "HowToStep",
+      text: "Once simmering, add roasted bone marrow from the bones and stir in thyme, salt, and pepper. Cook for 10 minutes to thicken.",
     },
     {
-      id: "assemble-pie",
-      description: [
-        "Pour the mixture into a pie dish, cover with the pie crust, and bake for 30-35 minutes until the crust is golden.",
-      ],
-      utensils: ["oven"],
-      ingredients: [pieCrust],
+      "@type": "HowToStep",
+      text: "Pour the mixture into a pie dish, cover with the pie crust, and bake for 30-35 minutes until the crust is golden.",
     },
     {
-      id: "let-cool",
-      description: ["Let cool slightly before serving."],
+      "@type": "HowToStep",
+      text: "Let cool slightly before serving.",
     },
   ];
+
+  // Define the recipe object matching the Schema.org Recipe type
+  const recipe: Recipe = {
+    "@context": "https://schema.org/",
+    "@type": "Recipe",
+    name: "Bone Marrow Pot Pie",
+    description:
+      "A rich and savory pot pie filled with roasted bone marrow, vegetables, and herbs for a deeply satisfying dish.",
+    recipeIngredient: ingredientStrings,
+    recipeInstructions: steps,
+  };
 
   return (
     <article id="bone-marrow-pot-pie">
+      {/* Include the JSON-LD script */}
+      <script type="application/ld+json">{JSON.stringify(recipe)}</script>
       <PieInfo
         name="Bone Marrow Pot Pie"
         description="A rich and savory pot pie filled with roasted bone marrow, vegetables, and herbs for a deeply satisfying dish."

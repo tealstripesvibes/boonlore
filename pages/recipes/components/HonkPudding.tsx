@@ -1,162 +1,162 @@
+// pages/recipes/components/HonkPudding.tsx
+
 import React from "react";
 import { Ingredients } from "./pie/Ingredients";
 import { PreparationSteps } from "./pie/PreparationSteps";
 import { PieInfo } from "./pie/PieInfo";
-import { Ingredient } from "../types/ingredient";
-import { RecipeStep } from "../types/step";
 
-type IngredientSet =
-  | "challah-brioche"
-  | "heavy-cream"
-  | "eggs"
-  | "gruyere-cheese"
-  | "parmesan-cheese"
-  | "nutmeg"
-  | "thyme"
-  | "salt-and-pepper"
-  | "potatoes"
-  | "garlic";
-type RecipeUtensil = "oven" | "mixing-bowl" | "baking-dish" | "saucepan";
-type RecipeIngredient = Ingredient<IngredientSet>;
+// Define interfaces matching Schema.org types
+interface HowToIngredient {
+  "@type": "HowToIngredient";
+  name: string;
+  requiredQuantity?: string;
+}
+
+interface HowToStep {
+  "@type": "HowToStep";
+  text: string;
+}
+
+interface Recipe {
+  "@context": string;
+  "@type": "Recipe";
+  name: string;
+  description?: string;
+  recipeIngredient: string[];
+  recipeInstructions: HowToStep[];
+}
 
 export function HonkPudding({
   variation = "bread pudding",
 }: {
   variation: "bread pudding" | "savory gratin";
 }) {
-  const breadPuddingIngredients: RecipeIngredient[] = [
+  // Define ingredients as HowToIngredient objects
+  const breadPuddingIngredients: HowToIngredient[] = [
     {
-      id: "challah-brioche",
+      "@type": "HowToIngredient",
       name: "Challah or brioche",
-      amount: { unit: "cups", valence: 6 },
+      requiredQuantity: "6 cups",
     },
     {
-      id: "heavy-cream",
+      "@type": "HowToIngredient",
       name: "Heavy cream",
-      amount: { unit: "cups", valence: 2 },
+      requiredQuantity: "2 cups",
     },
     {
-      id: "eggs",
+      "@type": "HowToIngredient",
       name: "Eggs",
-      amount: { unit: "large individuals", valence: 4 },
+      requiredQuantity: "4 large",
     },
     {
-      id: "gruyere-cheese",
+      "@type": "HowToIngredient",
       name: "Gruyère cheese",
-      amount: { unit: "cup", valence: 0.5 },
+      requiredQuantity: "0.5 cup",
     },
     {
-      id: "parmesan-cheese",
+      "@type": "HowToIngredient",
       name: "Parmesan cheese",
-      amount: { unit: "cup", valence: 0.5 },
+      requiredQuantity: "0.5 cup",
     },
     {
-      id: "nutmeg",
+      "@type": "HowToIngredient",
       name: "Nutmeg",
-      amount: { unit: "tsp", valence: 0.25 },
+      requiredQuantity: "0.25 tsp",
     },
     {
-      id: "thyme",
+      "@type": "HowToIngredient",
       name: "Thyme",
-      amount: { unit: "tsp", valence: 1 },
+      requiredQuantity: "1 tsp",
     },
     {
-      id: "salt-and-pepper",
+      "@type": "HowToIngredient",
       name: "Salt and pepper",
-      amount: { unit: "to taste", valence: 1 },
+      requiredQuantity: "to taste",
     },
   ];
 
-  const savoryGratinIngredients: RecipeIngredient[] = [
+  const savoryGratinIngredients: HowToIngredient[] = [
     {
-      id: "potatoes",
+      "@type": "HowToIngredient",
       name: "Potatoes",
-      amount: { unit: "large individuals", valence: 4 },
+      requiredQuantity: "4 large",
     },
     {
-      id: "heavy-cream",
+      "@type": "HowToIngredient",
       name: "Heavy cream",
-      amount: { unit: "cups", valence: 2 },
+      requiredQuantity: "2 cups",
     },
     {
-      id: "gruyere-cheese",
+      "@type": "HowToIngredient",
       name: "Gruyère cheese",
-      amount: { unit: "cup", valence: 1 },
+      requiredQuantity: "1 cup",
     },
     {
-      id: "garlic",
+      "@type": "HowToIngredient",
       name: "Garlic",
-      amount: { unit: "cloves minced", valence: 2 },
+      requiredQuantity: "2 cloves, minced",
     },
     {
-      id: "nutmeg",
+      "@type": "HowToIngredient",
       name: "Nutmeg",
-      amount: { unit: "tsp", valence: 0.25 },
+      requiredQuantity: "0.25 tsp",
     },
     {
-      id: "thyme",
+      "@type": "HowToIngredient",
       name: "Thyme",
-      amount: { unit: "tsp", valence: 1 },
+      requiredQuantity: "1 tsp",
     },
     {
-      id: "salt-and-pepper",
+      "@type": "HowToIngredient",
       name: "Salt and pepper",
-      amount: { unit: "to taste", valence: 1 },
+      requiredQuantity: "to taste",
     },
   ];
 
-  const breadPuddingSteps: RecipeStep<RecipeIngredient[], RecipeUtensil[]>[] = [
+  // Define steps as HowToStep objects
+  const breadPuddingSteps: HowToStep[] = [
     {
-      id: "preheat",
-      description: ["Preheat oven to 350°F (175°C)."],
-      utensils: ["oven"],
+      "@type": "HowToStep",
+      text: "Preheat oven to 350°F (175°C).",
     },
     {
-      id: "mix-ingredients",
-      description: [
-        "In a large bowl, whisk eggs, heavy cream, thyme, nutmeg, salt, and pepper.",
-        "Toss the cubed bread into the egg mixture until well coated.",
-        "Fold in Gruyère and Parmesan cheeses.",
-      ],
-      utensils: ["mixing-bowl"],
-      ingredients: breadPuddingIngredients,
+      "@type": "HowToStep",
+      text: "In a large bowl, whisk eggs, heavy cream, thyme, nutmeg, salt, and pepper.",
     },
     {
-      id: "bake",
-      description: [
-        "Transfer to a buttered baking dish and bake for 30-40 minutes until the top is golden and the center is set.",
-      ],
-      utensils: ["oven", "baking-dish"],
+      "@type": "HowToStep",
+      text: "Toss the cubed bread into the egg mixture until well coated.",
+    },
+    {
+      "@type": "HowToStep",
+      text: "Fold in Gruyère and Parmesan cheeses.",
+    },
+    {
+      "@type": "HowToStep",
+      text: "Transfer to a buttered baking dish and bake for 30-40 minutes until the top is golden and the center is set.",
     },
   ];
 
-  const savoryGratinSteps: RecipeStep<RecipeIngredient[], RecipeUtensil[]>[] = [
+  const savoryGratinSteps: HowToStep[] = [
     {
-      id: "preheat",
-      description: ["Preheat oven to 350°F (175°C)."],
-      utensils: ["oven"],
+      "@type": "HowToStep",
+      text: "Preheat oven to 350°F (175°C).",
     },
     {
-      id: "layer-potatoes",
-      description: ["Layer the sliced potatoes in a buttered baking dish."],
-      utensils: ["baking-dish"],
-      ingredients: [savoryGratinIngredients[0]],
+      "@type": "HowToStep",
+      text: "Layer the sliced potatoes in a buttered baking dish.",
     },
     {
-      id: "heat-cream",
-      description: [
-        "In a saucepan, heat heavy cream with garlic, thyme, nutmeg, salt, and pepper until warmed.",
-        "Pour the cream mixture over the potatoes and top with Gruyère cheese.",
-      ],
-      utensils: ["saucepan"],
-      ingredients: savoryGratinIngredients.slice(1),
+      "@type": "HowToStep",
+      text: "In a saucepan, heat heavy cream with garlic, thyme, nutmeg, salt, and pepper until warmed.",
     },
     {
-      id: "bake",
-      description: [
-        "Bake for 45 minutes to 1 hour, until the potatoes are tender and the top is golden brown.",
-      ],
-      utensils: ["oven", "baking-dish"],
+      "@type": "HowToStep",
+      text: "Pour the cream mixture over the potatoes and top with Gruyère cheese.",
+    },
+    {
+      "@type": "HowToStep",
+      text: "Bake for 45 minutes to 1 hour, until the potatoes are tender and the top is golden brown.",
     },
   ];
 
@@ -168,20 +168,32 @@ export function HonkPudding({
   const selectedSteps =
     variation === "bread pudding" ? breadPuddingSteps : savoryGratinSteps;
 
+  // Generate ingredient strings for the recipeIngredient property
+  const ingredientStrings = selectedIngredients.map(
+    (ingredient) => `${ingredient.requiredQuantity} ${ingredient.name}`,
+  );
+
+  // Define the recipe object matching the Schema.org Recipe type
+  const recipe: Recipe = {
+    "@context": "https://schema.org/",
+    "@type": "Recipe",
+    name:
+      variation === "bread pudding"
+        ? "Honk Bread Pudding"
+        : "Honk Savory Gratin",
+    description:
+      variation === "bread pudding"
+        ? "A grounding and rich bread pudding, perfect for adapting to different holiday moods."
+        : "A luxurious savory gratin, grounding the meal with a rich and opulent feel.",
+    recipeIngredient: ingredientStrings,
+    recipeInstructions: selectedSteps,
+  };
+
   return (
     <article id="honk-pudding">
-      <PieInfo
-        name={
-          variation === "bread pudding"
-            ? "Honk Bread Pudding"
-            : "Honk Savory Gratin"
-        }
-        description={
-          variation === "bread pudding"
-            ? "A grounding and rich bread pudding, perfect for adapting to different holiday moods."
-            : "A luxurious savory gratin, grounding the meal with a rich and opulent feel."
-        }
-      />
+      {/* Include the JSON-LD script */}
+      <script type="application/ld+json">{JSON.stringify(recipe)}</script>
+      <PieInfo name={recipe.name} description={recipe.description} />
       <section className="recipe">
         <Ingredients items={selectedIngredients} />
         <PreparationSteps steps={selectedSteps} />

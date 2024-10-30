@@ -5,7 +5,7 @@ export function PieInfo({
   description,
 }: {
   name: string;
-  description: string;
+  description?: string;
 }) {
   return (
     <section>

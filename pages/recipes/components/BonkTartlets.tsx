@@ -1,142 +1,124 @@
+// pages/recipes/components/BonkTartlets.tsx
+
 import React from "react";
 import { Ingredients } from "./pie/Ingredients";
 import { PreparationSteps } from "./pie/PreparationSteps";
 import { PieInfo } from "./pie/PieInfo";
-import { Ingredient } from "../types/ingredient";
-import { RecipeStep } from "../types/step";
 
-type IngredientSet =
-  | "almond-flour"
-  | "butter"
-  | "thyme"
-  | "lemon-zest"
-  | "goat-cheese"
-  | "honey"
-  | "black-pepper"
-  | "salt";
-type RecipeUtensil = "oven" | "tartlet-molds" | "mixing-bowl";
-type RecipeIngredient = Ingredient<IngredientSet>;
+// Define interfaces matching Schema.org types
+interface HowToIngredient {
+  "@type": "HowToIngredient";
+  name: string;
+  requiredQuantity?: string;
+}
+
+interface HowToStep {
+  "@type": "HowToStep";
+  text: string;
+}
+
+interface Recipe {
+  "@context": string;
+  "@type": "Recipe";
+  name: string;
+  description?: string;
+  recipeIngredient: string[];
+  recipeInstructions: HowToStep[];
+}
 
 export function BonkTartlets() {
-  const almondFlour: RecipeIngredient = {
-    id: "almond-flour",
-    name: "almond flour",
-    amount: {
-      unit: "cup",
-      valence: 1,
+  // Define ingredients as HowToIngredient objects
+  const ingredients: HowToIngredient[] = [
+    {
+      "@type": "HowToIngredient",
+      name: "almond flour",
+      requiredQuantity: "1 cup",
     },
-  };
-  const butter: RecipeIngredient = {
-    id: "butter",
-    name: "butter",
-    amount: {
-      unit: "cup",
-      valence: 0.25,
+    {
+      "@type": "HowToIngredient",
+      name: "butter",
+      requiredQuantity: "0.25 cup",
     },
-  };
-  const thyme: RecipeIngredient = {
-    id: "thyme",
-    name: "fresh thyme",
-    amount: {
-      unit: "tsp",
-      valence: 1,
+    {
+      "@type": "HowToIngredient",
+      name: "fresh thyme",
+      requiredQuantity: "1 tsp",
     },
-  };
-  const lemonZest: RecipeIngredient = {
-    id: "lemon-zest",
-    name: "lemon zest",
-    amount: {
-      unit: "tbsp",
-      valence: 1,
+    {
+      "@type": "HowToIngredient",
+      name: "lemon zest",
+      requiredQuantity: "1 tbsp",
     },
-  };
-  const goatCheese: RecipeIngredient = {
-    id: "goat-cheese",
-    name: "goat cheese",
-    amount: {
-      unit: "oz",
-      valence: 4,
+    {
+      "@type": "HowToIngredient",
+      name: "goat cheese",
+      requiredQuantity: "4 oz",
     },
-  };
-  const honey: RecipeIngredient = {
-    id: "honey",
-    name: "honey",
-    amount: {
-      unit: "tbsp",
-      valence: 1,
+    {
+      "@type": "HowToIngredient",
+      name: "honey",
+      requiredQuantity: "1 tbsp",
     },
-  };
-  const blackPepper: RecipeIngredient = {
-    id: "black-pepper",
-    name: "cracked black pepper",
-    amount: {
-      unit: "tsp",
-      valence: 0.5,
+    {
+      "@type": "HowToIngredient",
+      name: "cracked black pepper",
+      requiredQuantity: "0.5 tsp",
     },
-  };
-  const salt: RecipeIngredient = {
-    id: "salt",
-    name: "salt",
-    amount: {
-      unit: "to taste",
-      valence: 1,
+    {
+      "@type": "HowToIngredient",
+      name: "salt",
+      requiredQuantity: "to taste",
     },
-  };
-
-  const ingredients: RecipeIngredient[] = [
-    almondFlour,
-    butter,
-    thyme,
-    lemonZest,
-    goatCheese,
-    honey,
-    blackPepper,
-    salt,
   ];
 
-  const steps: RecipeStep<RecipeIngredient[], RecipeUtensil[]>[] = [
+  // Generate ingredient strings for the recipeIngredient property
+  const ingredientStrings = ingredients.map(
+    (ingredient) => `${ingredient.requiredQuantity} ${ingredient.name}`,
+  );
+
+  // Define steps as HowToStep objects
+  const steps: HowToStep[] = [
     {
-      id: "preheat",
-      description: ["Preheat oven to 350°F (175°C)."],
-      utensils: ["oven"],
+      "@type": "HowToStep",
+      text: "Preheat oven to 350°F (175°C).",
     },
     {
-      id: "make-dough",
-      description: [
-        "Mix almond flour and butter to form a tartlet dough. Press the dough into small tartlet molds.",
-      ],
-      utensils: ["mixing-bowl", "tartlet-molds"],
-      ingredients: [almondFlour, butter],
+      "@type": "HowToStep",
+      text: "Mix almond flour and butter to form a tartlet dough. Press the dough into small tartlet molds.",
     },
     {
-      id: "bake-tartlets",
-      description: ["Bake for 10-12 minutes or until golden brown."],
-      utensils: ["oven"],
+      "@type": "HowToStep",
+      text: "Bake for 10-12 minutes or until golden brown.",
     },
     {
-      id: "make-filling",
-      description: [
-        "In a bowl, mix goat cheese, honey, lemon zest, thyme, salt, and black pepper.",
-      ],
-      utensils: ["mixing-bowl"],
-      ingredients: [goatCheese, honey, lemonZest, thyme, salt, blackPepper],
+      "@type": "HowToStep",
+      text: "In a bowl, mix goat cheese, honey, lemon zest, thyme, salt, and black pepper.",
     },
     {
-      id: "assemble-tartlets",
-      description: [
-        "Once the tartlet shells are cool, fill with the goat cheese mixture and garnish with a sprig of thyme and a dash of citrus zest.",
-      ],
+      "@type": "HowToStep",
+      text: "Once the tartlet shells are cool, fill with the goat cheese mixture and garnish with a sprig of thyme and a dash of citrus zest.",
     },
     {
-      id: "serve",
-      description: [
-        "Serve as a final course, bringing a notable citrusy and earthy finish to the meal.",
-      ],
+      "@type": "HowToStep",
+      text: "Serve as a final course, bringing a notable citrusy and earthy finish to the meal.",
     },
   ];
+
+  // Define the recipe object matching the Schema.org Recipe type
+  const recipe: Recipe = {
+    "@context": "https://schema.org/",
+    "@type": "Recipe",
+    name: "Citrus and Herb-Infused Earthy Tartlets",
+    description:
+      "A notable and pungent citrus-earth tartlet, perfect for the end of the meal. Picky eaters may avoid the strong flavors, but foodies will appreciate its boldness.",
+    recipeIngredient: ingredientStrings,
+    recipeInstructions: steps,
+  };
 
   return (
     <article id="bonk-tartlets">
+      {/* Include the JSON-LD script */}
+      <script type="application/ld+json">{JSON.stringify(recipe)}</script>
       <PieInfo
         name="Citrus and Herb-Infused Earthy Tartlets"
         description="A notable and pungent citrus-earth tartlet, perfect for the end of the meal. Picky eaters may avoid the strong flavors, but foodies will appreciate its boldness."
