@@ -1,18 +1,33 @@
-// pages/recipes/by/ingredient/butternut-squash/+Page.tsx
+// pages/recipes/by/ingredient/butternut-squash/@id/+Page.tsx
 
-import "./_styles/_page.scss";
+import "../_styles/_page.scss";
 import { useEffect, useState } from "react";
 import { Head } from "vike-react/Head";
 import { MainHeader } from "@core/components/layout/components/header/MainHeader";
 import { DispositionSwitch } from "@widgets/disposition/Disposition";
 import { DispositionEmblem } from "@core/components/layout/components/logo/DispositionEmblem";
-import butternut_1 from "./_recipes/images/2024-10-B/butternut-hold.webp";
+import butternut_1 from "../_recipes/images/2024-10-B/butternut-hold.webp";
 import { usePageContext } from "vike-react/usePageContext";
 import { IDispositionName } from "@identities/dispositions/types";
 import { useData } from "vike-react/useData";
-import { Recipe, recipes } from "./data.recipes.shared";
 
 export { Page };
+
+interface HowToStep {
+  "@type": "HowToStep";
+  text: string;
+}
+
+interface Recipe {
+  "@context": string;
+  "@type": "Recipe";
+  name: string;
+  description?: string;
+  url?: string;
+  image?: string;
+  recipeIngredient?: string[];
+  recipeInstructions?: HowToStep[];
+}
 
 function RecipeComponent({ recipe }: { recipe: Recipe }) {
   if (!recipe) return null;
@@ -101,11 +116,9 @@ function usePrimedDisposition(
 }
 
 function Page() {
+  const { recipes } = useData<{ recipes: Record<string, Recipe> }>();
   const pageContext = usePageContext();
-  // Initialize hash state with the initial hash from pageContext
-  const hash = useHash(pageContext.urlParsed.hash);
-
-  // Define all recipes
+  const hash = useHash(pageContext.routeParams.id);
   const dispositionToRecipeMap: Record<string, string> = {
     boon: "roasted-on-salad",
     bane: "curry",
@@ -113,48 +126,14 @@ function Page() {
     bonk: "tartlets",
     honk: "holiday-gratin",
   };
-
   const activeRecipe = useActiveRecipe(hash, recipes);
   const primedDisposition = usePrimedDisposition(hash, dispositionToRecipeMap);
-
   const handleDispositionChange = (newDisposition: string) => {
     const recipeHash = dispositionToRecipeMap[newDisposition];
-    if (recipeHash && typeof window !== "undefined") {
-      window.location.hash = recipeHash; // Update the URL hash
-    }
   };
 
   return (
     <main id="page__recipes--butternut-squash-recipes">
-      {}
-      <Head>
-        <title>
-          {activeRecipe ? activeRecipe.name : "Butternut Squash Recipes"}
-        </title>
-        <meta
-          property="og:title"
-          content={activeRecipe?.name || "Butternut Squash Recipes"}
-        />
-        <meta
-          property="og:description"
-          content={
-            activeRecipe?.description ||
-            "Explore a variety of butternut squash recipes."
-          }
-        />
-        <meta
-          property="og:image"
-          content={activeRecipe?.image || butternut_1}
-        />
-        <meta property="og:type" content="article" />
-        <meta
-          property="og:url"
-          content={activeRecipe?.url || pageContext.urlOriginal}
-        />
-        <script type="application/ld+json">
-          {JSON.stringify(activeRecipe || {})}
-        </script>
-      </Head>
       <MainHeader />
       <nav>
         <ul>
