@@ -3,6 +3,7 @@ import { LogoAnimation } from "@widgets/logo/LogoAnimation";
 import { MainHeader } from "@core/components/layout/components/header/MainHeader";
 import { MainFooter } from "@core/components/layout/components/footer/MainFooter";
 import { SocialMediaLinks } from "@features/social-media/SocialMedia";
+import { Head } from "vike-react/Head";
 
 export { Page };
 

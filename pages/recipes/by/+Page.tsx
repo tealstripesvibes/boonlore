@@ -1,7 +1,6 @@
 import "./_styles/_page.scss";
 import { Head } from "vike-react/Head";
 import { MainHeader } from "@core/components/layout/components/header/MainHeader";
-import { DispositionSwitch } from "@widgets/disposition/Disposition";
 import { DispositionEmblem } from "@core/components/layout/components/logo/DispositionEmblem";
 
 export { Page };
