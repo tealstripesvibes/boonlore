@@ -6,6 +6,7 @@ import { Feature } from "@core/feature";
 import { featureIds } from "@identities/features/ids";
 import { useDisposition } from "@widgets/disposition/Disposition";
 import classNames from "classnames";
+import "./stylesheets/_logo.scss";
 
 interface DispositionEmblemProps {
   onDispositionChange?: (disposition: IDispositionName) => void;

@@ -1,3 +1,5 @@
+// pages/recipes/by/ingredient/butternut-squash/@id/+onBeforePrerenderStart.ts
+
 import { recipes } from "../data.recipes.shared";
 
 export { onBeforePrerenderStart };

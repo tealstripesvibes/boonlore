@@ -10,6 +10,7 @@ import butternut_1 from "../_recipes/images/2024-10-B/butternut-hold.webp";
 import { usePageContext } from "vike-react/usePageContext";
 import { IDispositionName } from "@identities/dispositions/types";
 import { useData } from "vike-react/useData";
+import { appClassnames } from "@core/styles/classNames";
 
 export { Page };
 
@@ -143,11 +144,13 @@ function Page() {
         </ul>
       </nav>
       <article>
-        <h1>Butternut Squash</h1>
-        <h2>Recipes for Butternut Squash</h2>
-        <figure>
-          <img src={butternut_1} alt="Butternut Squash" />
-        </figure>
+        <section className={appClassnames.ui.scene.__.static}>
+          <h1>Butternut Squash</h1>
+          <h2>Recipes for Butternut Squash</h2>
+          <figure>
+            <img src={butternut_1} alt="Butternut Squash" />
+          </figure>
+        </section>
         <DispositionEmblem
           onDispositionChange={handleDispositionChange}
           primedDisposition={primedDisposition}

@@ -262,3 +262,4 @@ export const recipes: Record<string, Recipe> = {
   tartlets: bonkRecipe,
   "holiday-gratin": honkRecipe,
 };
+export type RecipeKeys = keyof typeof recipes;

@@ -8,10 +8,19 @@ export const appClassnames = {
     isWidget: "widget",
   },
   ui: {
-    page:         {
-      active:        'page-active',
-      inactive:      'page-inactive',
-      transitioning: 'page-transitioning',
+    video: {
+      stage: "ui--stage__video",
+    },
+    scene: {
+      __: {
+        static: "ui--scene__static--stage",
+        day: "ui--scene__day--stage",
+      },
+    },
+    page: {
+      active: "page-active",
+      inactive: "page-inactive",
+      transitioning: "page-transitioning",
     },
   },
   requirements: {

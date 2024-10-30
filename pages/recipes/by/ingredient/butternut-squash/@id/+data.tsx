@@ -23,7 +23,6 @@ export async function data(pageContext: PageContext) {
   const image = activeRecipe?.image || defaultImage;
   const url = activeRecipe?.url || defaultUrl;
 
-  // Configure the Head component
   config({
     Head: (
       <>

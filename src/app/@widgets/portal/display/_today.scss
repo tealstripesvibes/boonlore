@@ -1,11 +1,14 @@
-#day-container {
+.ui--scene__day--stage {
+  --day-stage-y: 10px;
+  --day-stage-x: 10px;
+
   position: fixed;
-  bottom: 0;
-  right: 0;
+  bottom: calc(var(--day-stage-y));
+  right: calc(var(--day-stage-x));
   display: inline-flex;
   flex-direction: column;
 
-  .ui--video__stage {
+  .ui--stage__video {
     --scale: 1.5;
     --video-height: calc(var(--scale) * 100px);
     --video-width: calc(var(--scale) * 169px);

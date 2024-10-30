@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Vimeo from "@vimeo/player";
 import classNames from "classnames";
+import { appClassnames } from "@core/styles/classNames";
 
 interface VimeoVideoParams {
   doAutoplay?: boolean;
@@ -8,6 +9,7 @@ interface VimeoVideoParams {
   videoId: string;
   videoHash: string;
   onPlay?: () => void;
+  onLoad?: () => void;
 }
 
 function useVideoParams(videoHash: string, doAutoplay = true) {
@@ -28,22 +30,36 @@ function useVideoParams(videoHash: string, doAutoplay = true) {
   return new URLSearchParams(params).toString();
 }
 
-function useVimeoVideo(
-  doAutoplay: boolean,
-  ref: React.MutableRefObject<HTMLIFrameElement | null>,
-  videoFileId: string,
-  videoHash: string,
-  setLoading?: (value: boolean) => void,
-  onPlay?: { (): void },
-) {
+interface UseVimeoVideoParams {
+  doAutoplay: boolean;
+  ref: React.MutableRefObject<HTMLIFrameElement | null>;
+  videoFileId: string;
+  videoHash: string;
+  setLoading?: (value: boolean) => void;
+  onPlay?: { (): void };
+  onLoad?: { (): void };
+}
+
+function useVimeoVideo({
+  doAutoplay,
+  ref,
+  videoFileId,
+  videoHash,
+  setLoading,
+  onPlay,
+  onLoad,
+}: UseVimeoVideoParams) {
   const iframe = ref.current;
   const id = `vimeo-player-${videoFileId}`;
   useEffect(() => {
     const player = new Vimeo(id);
+    player.on("loaded", function () {
+      onLoad?.();
+      setLoading?.(false);
+    });
     player.on("play", function () {
       console.log("play");
       onPlay?.();
-      setLoading?.(false);
     });
   }, [iframe, onPlay, id]);
   const videoParams = useVideoParams(videoHash, doAutoplay);
@@ -56,21 +72,23 @@ export function VimeoVideo({
   videoId,
   videoHash,
   onPlay,
+  onLoad,
 }: VimeoVideoParams) {
   const [loading, setLoading] = useState(true);
   const ref = useRef<HTMLIFrameElement>(null);
 
-  const { id, vimeoUrl } = useVimeoVideo(
-    doAutoplay,
-    ref,
-    videoId,
-    videoHash,
-    setLoading,
-    onPlay,
-  );
+  const { id, vimeoUrl } = useVimeoVideo({
+    doAutoplay: doAutoplay,
+    ref: ref,
+    videoFileId: videoId,
+    videoHash: videoHash,
+    setLoading: setLoading,
+    onPlay: onPlay,
+    onLoad: onLoad,
+  });
 
   return (
-    <figure className="ui--video__stage">
+    <figure className={appClassnames.ui.video.stage}>
       {loading && <div>Loading...</div>}
       <iframe
         id={id}

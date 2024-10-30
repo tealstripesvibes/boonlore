@@ -1,4 +1,5 @@
 import { AppRoute } from "../types/linkConfig";
+import { mainRecipesRoute } from "../../../../../pages/recipes/route";
 
 const mainRootRoute: AppRoute = <const>{
   id: "scene__root",
@@ -37,14 +38,6 @@ const mainCoursesRoute: AppRoute = <const>{
   href: "/courses",
   title: "Courses",
   absolutePath: "/courses",
-  subConfigMap: {},
-  intent: ["welcome"],
-};
-const mainRecipesRoute: AppRoute = <const>{
-  id: "scene__recipes",
-  href: "/recipes",
-  title: "Recipes",
-  absolutePath: "/recipes",
   subConfigMap: {},
   intent: ["welcome"],
 };

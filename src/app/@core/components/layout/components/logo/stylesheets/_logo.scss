@@ -1,7 +1,6 @@
 .main-logo {
   display: flex;
   flex-direction: row;
-
   opacity: .3;
   transition: opacity .3s ease-in-out;
   &.engaged {

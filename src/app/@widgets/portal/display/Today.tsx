@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { VimeoVideo } from "@widgets/video/vimeo/VimeoVideo";
-import "./_style.scss";
+import "./_today.scss";
 import { useLocalStorage } from "@services/storage/localStorage/hooks/useLocalStorage";
+import classNames from "classnames";
+import { appClassnames } from "@core/styles/classNames";
 
 /**
  * Today Component
@@ -58,7 +60,7 @@ export function Today() {
   const cacheKey = generateCacheKey("day.widget", "key", { sceneId: "today" });
   const [dismissed, setDismissal] = useLocalStorage(cacheKey, false);
 
-  const handlePlay = () => setCanDismiss(true);
+  const handleLoad = () => setCanDismiss(true);
   const handleDismiss = () => setDismissal(true);
 
   const { videoId, videoHash } = parseVideoKey(VIMEO_KEY);
@@ -66,7 +68,10 @@ export function Today() {
   if (dismissed) return null;
 
   return (
-    <div id="day-container" className={cacheKey}>
+    <div
+      id="day-container"
+      className={classNames(appClassnames.ui.scene.__.day)}
+    >
       {canDismiss && (
         <button
           onClick={handleDismiss}
@@ -78,7 +83,7 @@ export function Today() {
       )}
       <VimeoVideo
         doAutoplay={false}
-        onPlay={handlePlay}
+        onLoad={handleLoad}
         videoId={videoId}
         videoHash={videoHash}
       />
